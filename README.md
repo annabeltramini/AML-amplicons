@@ -18,19 +18,19 @@ Then:
 5. Save the variable AA to contain the pact to the script
 
 Code for steps 3-5:
-```unix
+```shell
 #See what modules are available on rosalind
-   35  module avail
+module avail
 #Load singularity
-   36  module load apps/singularity/3.5.3 
+module load apps/singularity/3.5.3 
 
 #load the "docker" imge but use singlarity instead
-   37  singularity pull docker://virajbdeshpande/ampliconarchitect
+singularity pull docker://virajbdeshpande/ampliconarchitect
 #Source the code from github
-   39  git clone https://github.com/virajbdeshpande/AmpliconArchitect.git
+git clone https://github.com/virajbdeshpande/AmpliconArchitect.git
 
 #Save the variable AA to contain the path to the script
-   41  echo export AA=/scratch/users/k1921453/AA_repo/AmpliconArchitect/docker/run_aa_docker.sh >> ~/.bashrc
-   42  source ~/.bashrc
-   43  echo $AA #check
+echo export AA=/scratch/users/k1921453/AA_repo/AmpliconArchitect/docker/run_aa_docker.sh >> ~/.bashrc
+source ~/.bashrc
+echo $AA #check
 ```
