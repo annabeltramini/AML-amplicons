@@ -81,6 +81,7 @@ nano run_aa_docker.sh
 ```
 And comment out the line that starts with "docker" , and instead add the following lines at the end of the file to run singularity:
 ```shell
+#docker run -rm -e AA_DATA_REPO etc. etc.......
 SINGULARITYENV_AA_DATA_REPO=/home/data_repo \
 SINGULARITYENV_argstring="$argstring" \
 singularity exec --bind $AA_DATA_REPO:/home/data_repo \
@@ -93,3 +94,23 @@ bash /scratch/users/k1921453/AA_repo/AmpliconArchitect/docker/run_aa_script.sh
 ```
 (This is how the end of your file should look like, I am not super sure that I had to add the last couple of lines myself)
 
+## Setting up Amplicon Classifier
+Here is its github page: <a href="https://github.com/jluebeck/AmpliconClassifier"> Amplicon Classifier </a> This is a little easier, because we have already downloaded the AA_DATA_REPO. Therefore we only need to clone the github repository and create a conda environment which contains all the python libraries you need. Firstly, however, you need to install conda on ROsalind
+```shell
+#This creates a folder called AmpliconClassifier in the directory I was in (make sure it's the appropriate one)
+git clone https://github.com/jluebeck/AmpliconClassifier.git
+
+#Install conda
+module avail
+module load devtools/anaconda/2019.3-python3.7.3
+conda init
+
+#Create my conda environemnt
+conda create --name AA_class_conda
+conda install -n AA_class_conda intervaltree
+conda install -n AA_class_conda matplotlib
+
+#Whever I need to use amplicon classifier, I need to activate it
+conda activate AA_class_conda
+```
+## Setting up CNVkit
