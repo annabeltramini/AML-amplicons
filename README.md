@@ -18,7 +18,7 @@ Then:
 5. Save the variable AA to contain the pact to the script
 
 Code for steps 3-5:
-```
+```unix
 #See what modules are available on rosalind
    35  module avail
 #Load singularity
