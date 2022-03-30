@@ -1,5 +1,18 @@
 # AML-amplicons
 This contains all the code needed to run my BSc disseration project, which analyses the presence of amplicons in AML patients
+## Explaining the scripts:
+In this repository, you should find 5 files. these are the ones I ran in my pipeline. You can submit them as slurm job by using *sbatch -p celgene /path/to/file.sh SAMPLE_NAME*. In order to run these, you will need to have completed the "setting up" steps below.
+
+- **run_AA_CNV.sh**: 
+- **run_AA_noCNV.sh**:
+- **run_AA_class.sh**:
+- **run_AA_CNV_class.sh**:
+- **run_AA_CNV_class_TNP.sh**: This is specifically for the sample in the prospective cohort because the files can be found in a folder called SAMPLE-TNP but the bam file is called SAMPLE.sh. A part from this it is exactly the same
+
+## Understanding the outputs
+The ones you most likely are interested in are 
+- **SAMPLE-summary.txt** as the output of Amplicon Architect. This has information on all the amplicons identified, including the oncogenes amplified within them and what segments of the genomic DNA they contian, and how many of these amplicons were identified in a sample.
+- **SAMPLE-profiles.tsv** ad the output of Amplicon Classifier. This has information on the structure of each amplicon (linear/circular) and it says whether an amplification was invalid. 
 
 ## Setting up
 ### Rosalind
