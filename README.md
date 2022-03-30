@@ -10,12 +10,50 @@ The next step is to set up Amplicon Architect on your Rosalind account. The main
 
 So, go to the AA github page and:
 1. Get a mosek license
+
+My code:
+(make sure to change my K number to yours, and to change any other paths to the files
+```shell
+#ON MY LAPTOP (NOT ROSALIND)
+#Move the licence file from my laptop to Rosalind - change the paths to your own
+scp -i ~/.ssh/id_rsa /home/Users/annab/mosek/mosek.lic k1921453@login.rosalind.kcl.ac.uk:/scratch/users/k1921453
+
+#ON ROSALIND
+cd /scratch/users/k1921453
+mkdir mosek
+mv mosek.lic mosek/mosek.lic
+export MOSEKLM_LICENCE_FILE=/scratch/users/k1921453/mosek >> ~/.bashrc && source ~/.bashrc 
+#^save the path to the parent directory of the licence file as a variable called MOSEKLM_LICENCE FILE
+echo $MOSEKLM_LICENCE_FILE
+#Echo the variable to check it works
+```
+
 2. Download AA data repositories and set environment variable AA_DATA_REPO.
+```shell
+#ON MY LAPTOP
+#Move the GCHr19 file to my rosalind folder
+scp -i ~/.ssh/id_rsa /home/Users/annab/Downloads/GChR19.tar.gz k1921453@login.rosalind.kcl.ac.uk:/scratch/users/k1921453
+
+#ON ROSALIND
+cd /scratch/users/k1921453
+mkdir AA_repo
+mv GRCh38.tar.gz AA_repo/
+
+#Unzip the files
+cd AA_repo/
+gunzip GRCh38.tar.gz #first round of unzipping
+tar -xvf GRCh38.tar #second round of unzipping
+
+#save the variable AA_DATA_REPO to contain the path to AA_repo
+echo export AA_DATA_REPO=$PWD >> ~/.bashrc
+source ~/.bashrc
+echo $AA_DATA_REPO #check the variable
+```
 
 Then:
 3. Load singularity
 4. Source the AA code from github
-5. Save the variable AA to contain the pact to the script
+5. Save the variable AA to contain the path to the script
 
 Code for steps 3-5:
 ```shell
