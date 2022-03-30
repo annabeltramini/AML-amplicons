@@ -114,3 +114,12 @@ conda install -n AA_class_conda matplotlib
 conda activate AA_class_conda
 ```
 ## Setting up CNVkit
+Here is its github page: <a href="https://github.com/etal/cnvkit"> CNVkit </a> with precise instructions. Here is the code that I ran.
+```shell
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda create --name cnvkit
+source activate cnvkit
+conda install cnvkit
+```
