@@ -50,10 +50,10 @@ source ~/.bashrc
 echo $AA_DATA_REPO #check the variable
 ```
 
-Then:
-3. Load singularity
-4. Source the AA code from github
-5. Save the variable AA to contain the path to the script
+Then: \n
+3. Load singularity \n
+4. Source the AA code from github \n
+5. Save the variable AA to contain the path to the script \n
 
 Code for steps 3-5:
 ```shell
