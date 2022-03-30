@@ -6,7 +6,7 @@ This contains all the code needed to run my BSc disseration project, which analy
 The first step is to create your Rosalind login, with instructions here: <a href="https://rosalind.kcl.ac.uk/hpc/access/"> Rosalind access </a>
 
 ### Setting up Amplicon Architect
-The next step is to set up Amplicon Architect on your Rosalind account. The main instructions can be found here: <a href="https://github.com/virajbdeshpande/AmpliconArchitect"> Amplicon Architect Github Page </a> . However, it is important that you know that we cannot use "docker" on Rosalind (i.e. it cannot be installed in it because of some safety issues). Therefore, skip any step that mentions docker. Because of this, our steps for the "Prepare AA" script will also be slightly different. 
+The next step is to set up Amplicon Architect on your Rosalind account. The main instructions can be found here: <a href="https://github.com/virajbdeshpande/AmpliconArchitect"> Amplicon Architect Github Page </a> . However, it is important that you know that we cannot use "docker" on Rosalind (i.e. it cannot be installed in it because of some safety issues). Therefore, skip any step that mentions docker, and we will instead use Singularity. Because of this, our steps for the "Prepare AA" script will also be slightly different. 
 
 So, go to the AA github page and:
 1. Get a mosek license
@@ -72,3 +72,24 @@ echo export AA=/scratch/users/k1921453/AA_repo/AmpliconArchitect/docker/run_aa_d
 source ~/.bashrc
 echo $AA #check
 ```
+
+6. Fix the run_aa_docker.sh file.
+This script needs to be modified because it uses a docker image instead of singularity.Therefore open the file: 
+```shell
+cd PrepareAA/AmpliconArchitect/docker
+nano run_aa_docker.sh
+```
+And comment out the line that starts with "docker" , and instead add the following lines at the end of the file to run singularity:
+```shell
+SINGULARITYENV_AA_DATA_REPO=/home/data_repo \
+SINGULARITYENV_argstring="$argstring" \
+singularity exec --bind $AA_DATA_REPO:/home/data_repo \
+--bind $BAM_DIR:/home/bam_dir \
+--bind $BED_DIR:/home/bed_dir \
+--bind $OUT_DIR:/home/output \
+--bind $MOSEKLM_LICENSE_FILE:/home/programs/mosek/8/licenses \
+/scratch/users/k1921453/AA_repo/ampliconarchitect_latest.sif \
+bash /scratch/users/k1921453/AA_repo/AmpliconArchitect/docker/run_aa_script.sh
+```
+(This is how the end of your file should look like, I am not super sure that I had to add the last couple of lines myself)
+
