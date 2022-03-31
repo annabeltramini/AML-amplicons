@@ -9,9 +9,9 @@ This contains all the code needed to run my BSc disseration project, which analy
   * [Setting up](#setting-up)
     + [Rosalind](#rosalind)
     + [Setting up Amplicon Architect](#setting-up-amplicon-architect)
-  * [Setting up Amplicon Classifier](#setting-up-amplicon-classifier)
-  * [Setting up CNVkit](#setting-up-cnvkit)
-  * [Wrapping up](#wrapping-up)
+    + [Setting up Amplicon Classifier](#setting-up-amplicon-classifier)
+    + [Setting up CNVkit](#setting-up-cnvkit)
+    + [Wrapping up](#wrapping-up)
 
 ## Explaining the scripts - in progress
 In this repository, you should find 5 files. these are the ones I ran in my pipeline. You can submit them as slurm job by using *sbatch -p celgene /path/to/file.sh SAMPLE_NAME*. In order to run these, you will need to have completed the "setting up" steps below.
@@ -138,7 +138,7 @@ bash /scratch/users/k1921453/AA_repo/AmpliconArchitect/docker/run_aa_script.sh
 ```
 (This is how the end of your file should look like, I am not super sure that I had to add the last couple of lines myself)
 
-## Setting up Amplicon Classifier
+### Setting up Amplicon Classifier
 Here is its github page: <a href="https://github.com/jluebeck/AmpliconClassifier"> Amplicon Classifier </a> This is a little easier, because we have already downloaded the AA_DATA_REPO. Therefore we only need to clone the github repository and create a conda environment which contains all the python libraries you need. Firstly, however, you need to install conda on ROsalind
 ```shell
 #This creates a folder called AmpliconClassifier in the directory I was in (make sure it's the appropriate one)
@@ -157,7 +157,7 @@ conda install -n AA_class_conda matplotlib
 #Whever I need to use amplicon classifier, I need to activate it
 conda activate AA_class_conda
 ```
-## Setting up CNVkit
+### Setting up CNVkit
 Here is its github page: <a href="https://github.com/etal/cnvkit"> CNVkit </a> with precise instructions. Here is the code that I ran.
 ```shell
 conda config --add channels defaults
@@ -168,7 +168,7 @@ source activate cnvkit
 conda install cnvkit
 ```
 
-## Wrapping up
+### Wrapping up
 This is all the code you need to have pre-installed run my pipeline on Rosalind. Most likely, when you run it for the first time, it will not run. The reason is that I do not think you have the permission (yet) to access some of the files you need. When you do run it for the first time, whenever you get the error message "FileNotFound" or "PemissionDenied" check:
 1. That you changed the path to the one in your folders instead of mine (whenever it starts with /scratch/users/k1921453, replace the K number to yours). If that is not the case:
 2. Message Nogay and tell him what file you need access to. Thankfully he has endless patience. I had to do this around 10 times.
