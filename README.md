@@ -14,6 +14,24 @@ The ones you most likely are interested in are
 - **SAMPLE-summary.txt** as the output of Amplicon Architect. This has information on all the amplicons identified, including the oncogenes amplified within them and what segments of the genomic DNA they contian, and how many of these amplicons were identified in a sample.
 - **SAMPLE-profiles.tsv** ad the output of Amplicon Classifier. This has information on the structure of each amplicon (linear/circular) and it says whether an amplification was invalid. 
 
+### Creating the final table
+This table contains the following information:
+SAMPLE_ID Total_Amplicons Total_Valid_Amplicons Cyclic_Amplicons  Linear_Amplicons  Complex_Amplicons Invalid_Amplicons Oncogenes 
+```shell
+echo SAMPLE_ID "\t" Total_Ampicons "\t" Total_Valid_Amplicons "\t" Cyclic_Amplicons "\t" Linear_Amplicons "\t" Complex_Amplicons "\t" Invalid_Amplicons "\t" Oncogenes > amplicon_table.csv
+for SAMPLE in $(ls /scratch/users/k1921453/cases)
+do
+Total_Amplicons=$(grep "Amplicons =" /scratch/users/k1921453/cases/${SAMPLE}/*summary.txt | cut -d "=" -f 2)
+Oncogenes=$(grep "Oncogenes" /scratch/users/k1921453/cases/${SAMPLE}/*summary.txt | grep -v "= ,"| cut -d "=" -f 2)
+Linear_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "Linear amplification" | sed 's/Linear amplification//g')
+Cyclic_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "Cyclic" | sed 's/Cyclic//g')
+Invalid_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "No amp/Invalid" | sed 's:No amp/Invalid::g')
+Complex_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "Complex non-cyclic" | sed 's/Complex non-cyclic//g')
+Total_Valid_Amplicons=$(($Linear_Amplicons + $Cyclic_Amplicons + $Complex_Amplicons))
+echo -e $SAMPLE "\t" $Total_Ampicons "\t" $Total_Valid_Amplicons "\t" $Cyclic_Amplicons "\t" $Linear_Amplicons "\t" $Complex_Amplicons "\t" $Invalid_Amplicons "\t" $Oncogenes >> my_table_test.csv
+```
+This will include the ones that end in -TNP. If you want to remove them you might add some steps
+
 ## Setting up
 ### Rosalind
 The first step is to create your Rosalind login, with instructions here: <a href="https://rosalind.kcl.ac.uk/hpc/access/"> Rosalind access </a>
