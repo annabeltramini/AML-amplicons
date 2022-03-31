@@ -1,6 +1,19 @@
 # AML-amplicons
 This contains all the code needed to run my BSc disseration project, which analyses the presence of amplicons in AML patients
-## Explaining the scripts:
+
+#### Table of contents
+
+  * [Explaining the scripts](#explaining-the-scripts---in-progress)
+  * [Understanding the outputs](#understanding-the-outputs)
+    + [Creating the final table](#creating-the-final-table)
+  * [Setting up](#setting-up)
+    + [Rosalind](#rosalind)
+    + [Setting up Amplicon Architect](#setting-up-amplicon-architect)
+  * [Setting up Amplicon Classifier](#setting-up-amplicon-classifier)
+  * [Setting up CNVkit](#setting-up-cnvkit)
+  * [Wrapping up](#wrapping-up)
+
+## Explaining the scripts - in progress
 In this repository, you should find 5 files. these are the ones I ran in my pipeline. You can submit them as slurm job by using *sbatch -p celgene /path/to/file.sh SAMPLE_NAME*. In order to run these, you will need to have completed the "setting up" steps below.
 
 - **run_AA_CNV.sh**: 
