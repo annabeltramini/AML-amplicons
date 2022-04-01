@@ -1,7 +1,7 @@
 # AML-amplicons
 This contains all the code needed to run my BSc disseration project, which analyses the presence of amplicons in AML patients
 
-![alt text](https://github.com/annabektramini/AML-amplicons/blob/main/pipeline_draft.png?raw=true)
+![alt text](https://github.com/annabeltramini/AML-amplicons/blob/fe8861b9bfa07934e1501cbb7485fee0a9974746/Pipeline_draft.png)
 
 #### Table of contents
 
