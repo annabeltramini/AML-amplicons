@@ -32,17 +32,17 @@ The ones you most likely are interested in are
 This table contains the following information:
 SAMPLE_ID Total_Amplicons Total_Valid_Amplicons Cyclic_Amplicons  Linear_Amplicons  Complex_Amplicons Invalid_Amplicons Oncogenes 
 ```shell
-echo SAMPLE_ID "\t" Total_Ampicons "\t" Total_Valid_Amplicons "\t" Cyclic_Amplicons "\t" Linear_Amplicons "\t" Complex_Amplicons "\t" Invalid_Amplicons "\t" Oncogenes > amplicon_table.csv
+echo -e SAMPLE_ID "\t" Total_Amplicons "\t" Total_Valid_Amplicons "\t" Cyclic_Amplicons "\t" Linear_Amplicons "\t" Complex_Amplicons "\t" Invalid_Amplicons "\t" Oncogenes > amplicon_table.csv
 for SAMPLE in $(ls /scratch/users/k1921453/cases | grep -v "TNP")
 do
-Total_Amplicons=$(grep "Amplicons =" /scratch/users/k1921453/cases/${SAMPLE}/*summary.txt | cut -d "=" -f 2)
-Oncogenes=$(grep "Oncogenes" /scratch/users/k1921453/cases/${SAMPLE}/*summary.txt | grep -v "= ,"| cut -d "=" -f 2)
+Total_Amplicons=$(grep "Amplicons =" /scratch/users/k1921453/cases/${SAMPLE}/AA_results/*summary.txt | cut -d "=" -f 2)
+Oncogenes=$(grep "Oncogenes" /scratch/users/k1921453/cases/${SAMPLE}/AA_results/*summary.txt | grep -v "= ,"| cut -d "=" -f 2)
 Linear_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "Linear amplification" | sed 's/Linear amplification//g')
 Cyclic_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "Cyclic" | sed 's/Cyclic//g')
 Invalid_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "No amp/Invalid" | sed 's:No amp/Invalid::g')
 Complex_Amplicons=$(cut -f 3 cases/${SAMPLE}/AA_classifier/*profiles.tsv | sort | uniq -c | grep "Complex non-cyclic" | sed 's/Complex non-cyclic//g')
 Total_Valid_Amplicons=$(($Linear_Amplicons + $Cyclic_Amplicons + $Complex_Amplicons))
-echo -e $SAMPLE "\t" $Total_Ampicons "\t" $Total_Valid_Amplicons "\t" $Cyclic_Amplicons "\t" $Linear_Amplicons "\t" $Complex_Amplicons "\t" $Invalid_Amplicons "\t" $Oncogenes >> my_table_test.csv
+echo -e $SAMPLE "\t" $Total_Ampicons "\t" $Total_Valid_Amplicons "\t" $Cyclic_Amplicons "\t" $Linear_Amplicons "\t" $Complex_Amplicons "\t" $Invalid_Amplicons "\t" $Oncogenes >> amplicon_table.csv
 ```
 This will remove the ones that end in -TNP. If you want to keep them you might delete the "grep" step in the for loop line
 
