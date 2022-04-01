@@ -19,7 +19,7 @@ In this repository, you should find 5 files. these are the ones I ran in my pipe
 - **aa_run_cnv.sh**: This file takes as an input the name of the sample to analyse, and performs CNVkit first, and Amplicon Architect second. It is probably good to start by running this file, as most bugs will probably be at this stage, before AA classifier.
 - **aa_run_nocnv.sh**: This file takes as an input the name of the sample to analyse, and performs the Amplicon Architect algorithm. It is useful for when you have already performed CNVkit and just want to tweak the AA parameters (as CNVkit adds considerable time).
 - **aa_run_class.sh**: This file runs only amplicon classifier. It takes less than a minute to run, so you can copy its code and use it on the command line without submitting it as a slurm job if you wish. It takes as an argument the name of the sample
-- **aa_run_cnv_class.sh**: This file contains the *final and total pipeline*. I have not run it so do check it for bugs. It takes as an input the name of the sample to analyse and runs CNVkit, AA, and AA classifier. For each sample it creates a folder containing two folders, one called AA_results and the other AA_classifier.
+- **aa_run_cnv_class.sh**: This file contains the *final and total pipeline*. I have never run it so do check it for bugs. It takes as an input the name of the sample to analyse and runs CNVkit, AA, and AA classifier. For each sample it creates a folder containing two folders, one called AA_results and the other AA_classifier.
 
 ## Understanding the outputs
 The ones you most likely are interested in are 
