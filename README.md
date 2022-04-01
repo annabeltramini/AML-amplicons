@@ -52,9 +52,9 @@ The first step is to create your Rosalind login, with instructions here: <a href
 The next step is to set up Amplicon Architect on your Rosalind account. The main instructions can be found here: <a href="https://github.com/virajbdeshpande/AmpliconArchitect"> Amplicon Architect Github Page </a> . However, it is important that you know that we cannot use "docker" on Rosalind (i.e. it cannot be installed in it because of some safety issues). Therefore, skip any step that mentions docker, and we will instead use Singularity. Because of this, our steps for the "Prepare AA" script will also be slightly different. 
 
 So, go to the AA github page and:
-1. Get a mosek license
+1. Get a mosek license (Instruction in the github page)
 
-My code:
+Then run this code to upload your licence:
 (make sure to change my K number to yours, and to change any other paths to the files
 ```shell
 #ON MY LAPTOP (NOT ROSALIND)
@@ -71,7 +71,7 @@ echo $MOSEKLM_LICENCE_FILE
 #Echo the variable to check it works
 ```
 
-2. Download AA data repositories and set environment variable AA_DATA_REPO.
+2. Download AA data repositories (from the github page) and set environment variable AA_DATA_REPO (with the code below).
 ```shell
 #ON MY LAPTOP
 #Move the GCHr19 file to my rosalind folder
