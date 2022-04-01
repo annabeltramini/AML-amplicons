@@ -16,11 +16,10 @@ This contains all the code needed to run my BSc disseration project, which analy
 ## Explaining the scripts - in progress
 In this repository, you should find 5 files. these are the ones I ran in my pipeline. You can submit them as slurm job by using *sbatch -p celgene /path/to/file.sh SAMPLE_NAME*. In order to run these, you will need to have completed the "setting up" steps below.
 
-- **run_AA_CNV.sh**: 
-- **run_AA_noCNV.sh**:
-- **run_AA_class.sh**:
-- **run_AA_CNV_class.sh**:
-- **run_AA_CNV_class_TNP.sh**: This is specifically for the sample in the prospective cohort because the files can be found in a folder called SAMPLE-TNP but the bam file is called SAMPLE.sh. A part from this it is exactly the same
+- **aa_run_cnv.sh**: This file takes as an input the name of the sample to analyse, and performs CNVkit first, and Amplicon Architect second. It is probably good to start by running this file, as most bugs will probably be at this stage, before AA classifier.
+- **aa_run_nocnv.sh**: This file takes as an input the name of the sample to analyse, and performs the Amplicon Architect algorithm. It is useful for when you have already performed CNVkit and just want to tweak the AA parameters (as CNVkit adds considerable time).
+- **aa_run_class.sh**: This file runs only amplicon classifier. It takes less than a minute to run, so you can copy its code and use it on the command line without submitting it as a slurm job if you wish. It takes as an argument the name of the sample
+- **aa_run_cnv_class.sh**: This file contains the *final and total pipeline*. I have not run it so do check it for bugs. It takes as an input the name of the sample to analyse and runs CNVkit, AA, and AA classifier. For each sample it creates a folder containing two folders, one called AA_results and the other AA_classifier.
 
 ## Understanding the outputs
 The ones you most likely are interested in are 
