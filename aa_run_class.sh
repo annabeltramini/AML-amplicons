@@ -8,6 +8,7 @@
 
 conda activate AA_class_conda
 
+SAMPLE=$1
 mkdir /scratch/users/k1921453/cases/${SAMPLE}/AA_classifier
 cd /scratch/users/k1921453/cases/${SAMPLE}/AA_classifier
 
