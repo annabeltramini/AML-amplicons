@@ -15,7 +15,7 @@ This contains all the code needed to run my BSc disseration project, which analy
     + [Setting up CNVkit](#setting-up-cnvkit)
     + [Wrapping up](#wrapping-up)
 
-## Explaining the scripts - in progress
+## Explaining the scripts 
 In this repository, you should find 5 files. these are the ones I ran in my pipeline. You can submit them as slurm job by using *sbatch -p celgene /path/to/file.sh SAMPLE_NAME*. In order to run these, you will need to have completed the "setting up" steps below.
 
 - **aa_run_cnv.sh**: This file takes as an input the name of the sample to analyse, and performs CNVkit first, and Amplicon Architect second. It is probably good to start by running this file, as most bugs will probably be at this stage, before AA classifier.
